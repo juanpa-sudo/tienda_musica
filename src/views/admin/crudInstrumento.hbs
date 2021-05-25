@@ -1,0 +1,170 @@
+<div class="w-100 d-flex bg-gris">
+	{{> aside }}
+	<div class="w-100">
+		<div
+			class="titulo bg-white m-3 rounded shadow d-flex align-items-center justify-content-center"
+		>
+			<h1 class="fw-normal">Crud Instrumento</h1>
+		</div>
+		<div class="bg-white m-3 rounded shadow p-3">
+			<button
+				type="button"
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#agregarInstrumento"
+			>
+			Agregar un Nuevo Instrumento
+			</button>
+			<table id="artistas" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th >Descripcion</th>
+						<th>Imagen</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each instrumento}}
+
+						<tr>
+							<td>{{nombre}}</td>
+							<td>{{{descripcion}}}</td>
+                            <td><img src="/img/{{image}}" alt="" class="w-100" width="200"></td>
+							<td class="">
+								<button
+										type="button"
+										class="btn btn-info w-100 mb-2"
+										data-bs-toggle="modal"
+										data-bs-target="#editInstrumento{{id}}"
+									>
+									Editar
+								</button>
+
+								<a
+									href="/admin/deleteInstrumento/{{id}}"
+									class="btn btn-danger eliminar"									
+								>
+									Eliminar
+								</a>
+								</td>
+						</tr>
+
+					{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="agregarInstrumento"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/addInstrumento" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agrega un Nuevo Instrumento</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="nombre" 
+								placeholder="EL Nombre del Instrumento" 
+								class="form-control">
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-3">
+                            <label class="form-label">Descripcion del Instrumento</label>
+                            <input id="editor" type="hidden" name="descripcion">
+                            <trix-editor input="editor" style="min-height: 300px;"></trix-editor>
+                        </div>
+						<div class="mt-3">
+							<label class="form-label w-100">Imagen Del Instrumento</label>
+							<input type="file" name="image">
+						</div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar Album">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+{{!-- Editar artistas --}}
+{{#each instrumento }}
+	
+<div
+	class="modal fade"
+	id="editInstrumento{{id}}"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/editInstrumento" method="post" enctype="multipart/form-data" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edtar Instrumento:<span class="fw-bold">{{nombre}}</span></h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="nombre" class="form-control" value="{{nombre}}">
+                            </div>
+							
+                        </div>
+                        <div class="row mt-3">
+                            <label class="form-label">descripcion del instrumento </label>
+                            <input id="editor{{id}}" type="hidden" name="descripcion" value="{{descripcion}}">
+                            <trix-editor input="editor{{id}}" style="min-height: 300px;"></trix-editor>
+                        </div>                        
+							<img src="/img/{{image}}" alt="" class="my-2" width="200">
+						<dic class="mt-3">
+							<label class="form-label w-100">Imagen del Instrumento</label>
+							<input type="file" name="image">
+							<input type="hidden" name="image_old" value="{{image}}">
+						</dic>
+						<input type="hidden" name="id" value="{{id}}">
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Editar Instrumento">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+{{/each}}
+
+

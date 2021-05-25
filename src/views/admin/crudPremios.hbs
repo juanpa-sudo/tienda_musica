@@ -1,0 +1,181 @@
+<div class="w-100 d-flex bg-gris">
+{{> aside }}
+	<div class="w-100">
+		<div
+			class="titulo bg-white m-3 rounded shadow d-flex align-items-center justify-content-center"
+		>
+			<h1 class="fw-normal">Crud Canciones</h1>
+		</div>
+		<div class="bg-white m-3 rounded shadow p-3">
+			<button
+				type="button"
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#agregarArtista"
+			>
+			Agregar un Nuevo Premio
+			</button>
+			<table id="artistas" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Descripcion</th>
+						<th>Imagen</th> 
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each premios}}
+
+						<tr>
+							<td>{{nombre}}</td>
+							<td>{{{descripcion}}}</td>
+							<td><img src="/img/{{imagen}}" alt="" width="200"></td>
+							<td class="text-center">
+								<button
+										type="button"
+										class="btn btn-info mb-2 w-100"
+										data-bs-toggle="modal"
+										data-bs-target="#editPremios{{id}}"
+									>
+									Editar
+								</button>
+
+								<a
+									href="/admin/deletePremio/{{id}}"
+									class="btn btn-danger eliminar"									
+								>
+									Eliminar
+								</a>
+								</td>
+								
+						</tr>
+
+					{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="agregarArtista"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/addPremio" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Un Nuevo Premio</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" name="nombre" placeholder="EL Nombre Del premio" class="form-control">
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-3">
+                            <input id="editor" type="hidden" name="descripcion">
+                            <trix-editor input="editor" style="min-height: 300px;"></trix-editor>
+                        </div>
+
+                        <div class=" mt-3">
+                            <label for="" class="form-label w-100">Label Seleccione los Cantantes Al premio</label>
+							{{#each artista }}
+                            
+							<div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="artista[]" value="{{nombre}}">
+                                <label class="form-check-label">{{nombre}}</label>
+                            
+							</div>
+							{{/each}}
+                            
+                        </div>
+						<div class="row mt-3">
+							<label for="">Imagen del Premio</label>
+							<input type="file" name="imagen">
+						</div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar Premio">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+{{!-- Editar artistas --}}
+{{#each premios }}
+	
+<div
+	class="modal fade"
+	id="editPremios{{id}}"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/editPremio" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edtar {{nombre}}</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" name="nombre" class="form-control" value="{{nombre}}">
+                            </div>
+                            
+                        </div>
+						<div class="row mt-3">
+                            <input id="editor-premios{{id}}" type="hidden" name="descripcion" value="{{{descripcion}}}">
+                            <trix-editor input="editor-premios{{id}}" style="min-height: 300px;"></trix-editor>
+                        </div>
+                        
+						<div class="row mt-3">
+							<div><img src="/img/{{imagen}}" alt="" width="200" height="200"></div>
+							<label for="">Foto del Artistas</label>
+							<input type="file" name="imagen">
+							<input type="hidden" name="foto_old" value="{{imagen}}">
+						</div>
+						<input type="hidden" name="id" value="{{id}}">
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Editar Premio">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+{{/each}}
+
+

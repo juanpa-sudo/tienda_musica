@@ -1,0 +1,177 @@
+<div class="w-100 d-flex bg-gris">
+{{> aside }}
+	<div class="w-100">
+		<div
+			class="titulo bg-white m-3 rounded shadow d-flex align-items-center justify-content-center"
+		>
+			<h1 class="fw-normal">Crud Canciones</h1>
+		</div>
+		<div class="bg-white m-3 rounded shadow p-3">
+			<button
+				type="button"
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#agregarArtista"
+			>
+			Agregar una Nueva Cancion
+			</button>
+			<table id="artistas" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Cantante</th>
+						<th>Albun</th> 
+						<th>Imagen</th> 
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each canciones}}
+
+						<tr>
+							<td>{{nombre}}</td>
+							<td>{{cantante}}</td>
+							<td>{{album}}</td>
+							<td><img src="/img/{{imagen}}" alt="" width="200"></td>
+							<td class="text-center">
+								<button
+										type="button"
+										class="btn btn-info"
+										data-bs-toggle="modal"
+										data-bs-target="#editSong{{id}}"
+									>
+									Editar
+								</button>
+
+								<a
+									href="/admin/deleteCanciones/{{id}}"
+									class="btn btn-danger eliminar"									
+								>
+									Eliminar
+								</a>
+								</td>
+								
+						</tr>
+
+					{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="agregarArtista"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/addCanciones" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agrega Un Nuevo Artista</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="nombre" placeholder="EL Nombre De la Cancion" class="form-control">
+                            </div>
+                            <div class="col-md-5">
+                                <select class="form-select" aria-label="Default select example" name="cantante">
+                                    <option selected disabled>Seleccione Un Cantante</option>
+                                    {{#each artistas }}
+                                        
+                                    <option value="{{id}}">{{nombre}} {{apellidos}}</option>
+                                    {{/each}}
+                                    
+                                </select>
+                            </div>
+                            
+                        </div>
+                        
+						<div class="row mt-3">
+							<label for="">Imagen de la Cancion</label>
+							<input type="file" name="imagen">
+							
+						</div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar Cancion">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+{{!-- Editar artistas --}}
+{{#each canciones }}
+	
+<div
+	class="modal fade"
+	id="editSong{{id}}"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/editSong" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edtar {{nombre}}</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" name="nombre" class="form-control" value="{{nombre}}">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="cantante" class="form-control" value="{{cantante}}" disabled>
+                            </div>
+                            
+                        </div>
+                        
+						<div class="row mt-3">
+							<div><img src="/img/{{imagen}}" alt="" width="200" height="200"></div>
+							<label for="">Foto del Artistas</label>
+							<input type="file" name="imagen">
+							<input type="hidden" name="foto_old" value="{{imagen}}">
+						</div>
+						<input type="hidden" name="id" value="{{id}}">
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar Artista">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+{{/each}}
+
+

@@ -1,0 +1,32 @@
+{{> navbar}}
+<div class="container">
+	<h1 class="text-center fs-1 my-5">Los Premios más Apetecido por los
+		Artistas</h1>
+	<div class="row">
+		{{#each respuesta}}
+			<div class="col-md-6 mb-4">
+				<div class="premios shadow">
+					<div class="header-premio" style="background-image: url(/img/{{imagen}});">
+
+					</div>
+					<div class="d-flex">
+						<div class="inf-premio">
+							<h2 class="py-3 text-center">{{nombre}}</h2>
+							<p class="text-center">{{{descripcion}}}</p>
+						</div>
+						<div class="nominados">
+							<h2 class="py-3 text-center">Nominados</h2>
+							<ul class="nominados-lista">
+								{{#each artista }}
+									
+									<li>{{this}}</li>								
+								{{/each}}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+	</div>
+</div>
+{{> footer}}

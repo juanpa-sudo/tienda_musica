@@ -1,0 +1,18 @@
+{{> navbar}}
+<div>
+    
+    <div class="container">
+        <h1 class="text-center fs-1 my-5">Album Record <br><span class="fs-3 fw-normal">
+            Albumes que no estan al alcance de cualquiera
+        </span></h1>
+    
+        <div class="row">
+            {{#each respuesta }}
+
+                {{> album}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{> footer}}
+

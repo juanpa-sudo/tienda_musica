@@ -1,0 +1,87 @@
+<div class="col-md-4 mb-5">
+	<div
+		class="album w-100 shadow"
+		style="background-image: url(/img/{{imagen}});"
+	>
+		<div class="contenido-album w-100 h-100">
+			<div class="inf-album">
+				<h2 class="text-white text-center pt-3">{{nombre}}</h2>
+				<div class="container p-3 text-white text-center">
+					<p>Autor:Juanes</p>
+					<p>{{descripcion}}</p>
+					<button
+						class="btn-album text-white"
+						data-bs-toggle="modal"
+						data-bs-target="#album{{id}}"
+					>Comprar
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<div
+	class="modal fade"
+	id="album{{id}}"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="/public/comprarAlbum" method="POST">
+				<div class="modal-header">
+					<h5
+						class="modal-title text-center"
+						id="exampleModalLabel"
+					>Comprar Album: {{nombre}}</h5>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body cotainer">
+					<p class="text-center fs-3">Precio :<span
+							class="fw-bold text-success"
+						>{{precio}}</span></p>
+					<label>Ingresa Tu Nombre</label>
+					<input
+						type="text"
+						name="nombre"
+						class="form-control"
+						placeholder="Tu Nombre"
+					/>
+				</div>
+				<input type="hidden" name="precio" value="{{precio}}" />
+				<input type="hidden" name="compra" value="{{nombre}}" />
+				<input type="hidden" name="categoria" value="Album" />
+				<duv class="w-75 mx-auto">
+					<div class="w-50 mx-auto"><img
+							src="/img/{{imagen}}"
+							alt=""
+							class="w-100"
+						/></div>
+					<div
+						class="w-75 mx-auto"
+					>{{{descripcionCompleta}}}</div>
+				</duv>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-secondary"
+						data-bs-dismiss="modal"
+					>Close</button>
+					<input
+						type="submit"
+						value="Comprar Album"
+						class="btn btn-primary"
+					/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

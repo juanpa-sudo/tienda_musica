@@ -1,0 +1,54 @@
+<header class="h-100 w-100 hero">
+	<div class="h-100 w-100 gradient">
+		<nav
+			class="w-100 d-flex justify-content-between navegacion flex-column flex-md-row align-items-center container"
+		>
+			<h1 class="text-white">SOUND AND ESSENCCE</h1>
+			<ul class="d-flex lista">
+				<li class=""><a href="" class="me-3 text-white">Iniciar
+						Seccion</a>
+				</li>
+				<li class=""><a
+						href=""
+						class="text-white"
+					>Registrarse</a>
+				</li>
+			</ul>
+		</nav>
+		<h2 class="text-center text-white mb-5 mt-3">Vivir
+			<br />
+			Es
+			<br />
+			Música</h2>
+		<br />
+		<div class="container">
+			<p class="text-center text-white mt-5 fw-bold texto-hero">
+				Esta pagina es dedica especialmente a aquellas personas
+				que por sus venas corre la música y desean apoyar y ser
+				apoyados en esta industria, fuera de esto tambien pueden
+				comprar diferentes articulos y votar en premiaciones
+				relacionadas con la música articulos y relacionadas con
+				la música votar en premiaciones
+			</p>
+		</div>
+	</div>
+</header>
+{{> navbar}}
+<div style="background-color: #efefef;">
+	<div class="container">
+		<h2 class="text-center py-5 fs-1">Principales Artistas</h2>
+		<div class="row">
+			{{#each artista }}
+				{{> cantante}}
+			{{/each}}
+			<div class="col-12 d-flex justify-content-center"><a href="#" class="btn btn-primary shadow" style="max-width: 300px;">Ver todas las Canciones</a></div>
+		</div>
+		<div class="row">
+			<h2 class="text-center my-5 fs-1">Las Canciones de Moda</h2>
+			{{#each canciones }}
+				{{> canciones}}
+			{{/each}}
+		</div>
+	</div>
+</div>
+{{> footer}}

@@ -1,0 +1,233 @@
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: #efefef;
+}
+.hero {
+	background-image: url("https://s1.eestatic.com/2020/04/08/actualidad/Actualidad_480963137_149953807_1706x960.jpg");
+	background-size: cover;
+}
+.gradient {
+	background-color: rgba(37, 31, 25, 0.78);
+}
+.navegacion {
+	height: 97px;
+}
+.lista {
+	list-style: none;
+	padding: 0%;
+}
+.texto-hero {
+	font-size: 27px;
+	line-height: 1.8;
+}
+.ancho {
+	width: 500px !important;
+}
+.asider {
+	width: 28vw;
+	background-color: #21375e;
+}
+.nombre::after {
+	content: "";
+	display: block;
+	height: 3px;
+	width: 80%;
+	margin: 0 auto;
+	background-color: white;
+}
+.btn-admin {
+	display: block;
+	/* height: 3rem; */
+	font-size: 20px;
+	width: 100%;
+	padding: 10px 20px;
+	margin-bottom: 10px;
+	text-decoration: none;
+	transition: background-color 0.3s ease-in;
+}
+
+.btn-admin:hover {
+	background-color: #0a1222;
+}
+.icons {
+	width: 25px;
+	height: 30px;
+}
+.bg-gris {
+	background-color: #ebe9e9;
+}
+.titulo {
+	height: 5rem;
+}
+@media (min-width: 700px) {
+	.modal-content {
+		width: 45rem;
+	}
+}
+.btn {
+	color: white !important;
+}
+
+.like-btn {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+	cursor: pointer;
+	width: 80px;
+	height: 80px;
+	transform: translate(-15px, -10px);
+	background: url("https://i.ibb.co/vw78mf3/heart.png") no-repeat 0% 50%;
+	background-size: 2900%;
+}
+
+.like-active {
+	animation-name: animate;
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+.like-active {
+	animation-timing-function: steps(28);
+}
+
+@keyframes animate {
+	0% {
+		background-position: left;
+	}
+	50% {
+		background-position: right;
+	}
+	100% {
+		background-position: right;
+	}
+}
+.image-modal {
+	max-height: 300px;
+	width: 300px;
+}
+.song {
+	display: flex;
+	align-items: center;
+	border-radius: 29px;
+	background-color: white;
+	height: 100px;
+	padding-left: 32px;
+}
+.inf-song h5 {
+	font-size: 20px;
+	width: 174px;
+	font-weight: bold;
+	line-height: 1;
+}
+.img-song {
+	width: 118.36px !important;
+	height: 100px;
+	border-radius: 0px 29px 29px 0px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: initial;
+}
+.inf-song p {
+	font-size: 13px;
+	font-weight: 400;
+	color: #403c3c;
+}
+.album {
+	background-size: cover;
+	background-position: center;
+	height: 500px;
+	border-radius: 17px;
+	position: relative;
+	overflow: hidden;
+}
+.contenido-album {
+	background: linear-gradient(
+		360deg,
+		#000000 0%,
+		rgba(126, 126, 126, 0) 100%
+	);
+	/* background-color: yellow; */
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	display: flex;
+	align-items: flex-end;
+}
+.btn-album {
+	border: none;
+	width: 208.21px;
+	height: 53.47px;
+	background: rgba(61, 60, 60, 0.53);
+	border-radius: 68px;
+	font-weight: bold;
+	font-size: 20px;
+	transition: background, 0.3s;
+}
+.btn-album:hover {
+	background: rgba(136, 129, 129, 0.53);
+}
+.premios {
+	height: 620px;
+	border-radius: 35px;
+	background-color: #fff;
+	overflow: hidden;
+}
+.header-premio {
+	height: 294px;
+
+	background-size: cover;
+	background-position: center;
+}
+.inf-premio {
+	width: 340px;
+	margin-left: 24px;
+}
+.inf-premio p,
+.nominados-lista li {
+	line-height: 31px;
+	font-size: 20px;
+}
+.inf-premio h2,
+.nominados h2 {
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 30px;
+}
+.instrumentos {
+	border-radius: 50px;
+	margin: 0%;
+	overflow: hidden;
+	display: flex;
+}
+.img-instrumento {
+	height: 292px;
+	width: 385px;
+	background-size: cover;
+}
+.info-instrumento {
+	display: inline-block;
+	margin: 17px 41px 0 32px;
+	max-width: 700px;
+}
+.titulo-instrumento {
+	font-weight: bold;
+	font-size: 39px;
+}
+
+.titulo-instrumento::after {
+	content: "";
+	display: block;
+	width: 40%;
+	height: 5px;
+	background-color: black;
+	border-radius: 15px;
+}
+.descripcion-intrumento {
+	margin-top: 30px;
+}
+
+.descripcion-intrumento p {
+	line-height: 31px;
+	font-weight: 400;
+	font-size: 16px;
+}

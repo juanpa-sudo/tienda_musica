@@ -1,0 +1,120 @@
+<div class="col-md-6 mb-3">
+	<div
+		class="shadow p-3 fw-bold rounded"
+		style="background-color: white; height: 351px;"
+	>
+		<p class="text-success">Separa Tu Entrada: {{modalidad}}</p>
+		<h3 class="">{{nombre}}</h3>
+		<div class="d-flex">
+			<div class="">
+				<p class="fw-normal">Mayo 03 2019</p>
+				<p class="fw-normal">
+					{{descripcion}}...
+				</p>
+			</div>
+			<div class="" class="d-flex align-items-center">
+				<img src="/img/{{image}}" alt="" class="w-100" />
+			</div>
+		</div>
+		<button
+			type="button"
+			class="btn btn-success"
+			data-bs-toggle="modal"
+			data-bs-target="#compraBoleta{{id}}"
+		>
+			Adquerir Boleta
+		</button>
+	</div>
+</div>
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="compraBoleta{{id}}"
+	tabindex="-1"
+	aria-labelledby="mpleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form action="/public/comprarBoleta" method="POST">
+				<div class="modal-header">
+					<h2 class="text-modal" id="exampleModalLabel">
+						Adquiere Una Boleta</h2>
+					<button
+						type="button"
+						class="btn-close"
+						data-bs-dismiss="modal"
+						aria-label="Close"
+					></button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label
+									class="form-label"
+								>Ingresa Tu Nombre</label>
+								<input
+									type="text"
+									name="nombre"
+									class="form-control"
+								/>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="mb-3">
+								<label class="form-label">Valor
+									De la Boleta</label>
+								<input
+									type="text"
+									name="nombre"
+									class="form-control"
+									value="{{valor}}"
+									disabled
+								/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<h2
+							class="text-center text-success"
+						>{{nombre}}</h2>
+						<div class="d-flex justify-content-center">
+							<figure class="image-modal">
+								<img
+									src="/img/{{image}}"
+									alt=""
+									class="w-100"
+								/>
+							</figure>
+						</div>
+						<p class="w-75 mx-auto">{{descripcion}}</p>
+					</div>
+					<input
+						type="hidden"
+						name="compra"
+						value="{{nombre}}"
+					/>
+					<input
+						type="hidden"
+						name="categoria"
+						value="concierto"
+					/>
+				</div>
+				<div class="modal-footer">
+					<button
+						type="button"
+						class="btn btn-secondary"
+						data-bs-dismiss="modal"
+					>Cerrar</button>
+					<button
+						type="submit"
+						class="btn btn-success"
+					>Compar Boleta</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

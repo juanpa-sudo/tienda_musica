@@ -1,0 +1,31 @@
+{{> navbar}}
+<div>
+	<h1 class="py-5 text-center">Compositores Aclamados
+		<br />
+		<span class="fw-normal fs-3">Marcaron la diferencia componiendo
+			letras de otro mundo</span>
+            </h1>
+		<div class="container">
+			<div class="row">
+                {{#each respuesta }}
+				<div class="col-md-4">
+					<div class="card">
+						<img
+							src="/img/{{image}}"
+							class="card-img-top"
+							alt="..."
+						/>
+						<div class="card-body">
+							<h5 class="card-title">{{nombre}} {{apellidos}}</h5>
+							<p class="card-text">{{descripcion}}...</p>
+							<a href="#" class="btn btn-primary">Ver Compositor</a>
+						</div>  
+					</div>
+				</div>
+                    
+                {{/each}}
+			</div>
+		</div>
+	
+</div>
+{{> footer}}

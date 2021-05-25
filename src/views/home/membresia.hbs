@@ -1,0 +1,53 @@
+{{> navbar}}
+<div style="background-color: #efefef;">
+    <div class="container">
+        <h1 class="text-center fs-1 py-5">Adquiere Una Memebresia Para Difrutar <br>
+                Servicios Premiun</h1>
+        <div class="row">
+            {{#each respuesta }}
+    
+            <div class="col-md-6 shadow rounded mb-3 p-3" style="background-color:white">
+                <h3 class="border-bottom text-center border-success">{{nombre}}</h3>
+                <div class="p-2 border-bottom border-success">
+                    <p class="text-center fs-3">Precion :<span class="fw-bold text-success">{{precio}}</span></p>
+                    <p>{{{descripcion}}}</p>
+                </div>
+                <div class="d-flex">
+                    
+                    <button type="button" class="btn btn-success mt-2 w-50 mx-auto" data-bs-toggle="modal" data-bs-target="#membresia{{id}}">
+                        Comprar Membresia
+                    </button>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="membresia{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <form action="/public/comprarMembresia" method="POST">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLabel">{{nombre}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                           <p class="text-center fs-3">Precion :<span class="fw-bold text-success">{{precio}}</span></p>
+                           <label>Ingresa Tu Nombre</label>
+                           <input type="text" name="nombre" class="form-control" placeholder="Tu Nombre">
+                    </div>
+                    <input type="hidden" name="precio" value="{{precio}}">
+                    <input type="hidden" name="compra" value="{{nombre}}">
+                    <input type="hidden" name="categoria" value="Membresia">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <input type="submit" value="Comprar Membresia" class="btn btn-primary">
+                    </div>
+                </form>
+                </div>
+            </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+{{> footer}}
+
+<!-- Button trigger modal -->

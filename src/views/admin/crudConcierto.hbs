@@ -1,0 +1,206 @@
+<div class="w-100 d-flex bg-gris">
+	{{> aside }}
+	<div class="w-100">
+		<div
+			class="titulo bg-white m-3 rounded shadow d-flex align-items-center justify-content-center"
+		>
+			<h1 class="fw-normal">Crud de Conciertos</h1>
+		</div>
+		<div class="bg-white m-3 rounded shadow p-3">
+			<button
+				type="button"
+				class="btn btn-primary"
+				data-bs-toggle="modal"
+				data-bs-target="#agregarConcierto"
+			>
+			Agregar un Nuevo Concierto
+			</button>
+			<table id="artistas" class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th >Descripcion</th>
+						<th>Modalidad</th>
+						<th>Cantante</th>
+						<th>Imagen</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each conciertos }}
+
+						<tr>
+							<td>{{nombre}}</td>
+							<td>{{{descripcion}}}</td>
+							<td>{{modalidad}}</td>
+							<td>{{cantante}} {{apellidos}}</td>
+							<td><img src="/img/{{image}}" alt="" class="w-100" width="200"></td>
+							<td class="">
+								<button
+										type="button"
+										class="btn btn-info w-100 mb-2"
+										data-bs-toggle="modal"
+										data-bs-target="#editConcierto{{id}}"
+									>
+									Editar
+								</button>
+
+								<a
+									href="/admin/deleteConcierto/{{id}}"
+									class="btn btn-danger eliminar w-100"									
+								>
+									Eliminar
+								</a>
+								</td>
+						</tr>
+
+					{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+<!-- Modal -->
+<div
+	class="modal fade"
+	id="agregarConcierto"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/addConcierto" method="post" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agrega un Nuevo Concierto</h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="nombre" 
+								placeholder="EL Nombre del Concierto" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <label class="form-label">Descripcion del Concierto</label>
+                            <input id="editor" type="hidden" name="descripcion">
+                            <trix-editor input="editor" style="min-height: 300px;"></trix-editor>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label>Elige la Modalidad del Concierto</label>
+                                <select class="form-select" aria-label="Default select example" name="modalidad">
+                                    <option selected disabled>--Sleccionar--</option>
+                                    <option value="Virtual">Virtual</option>
+                                    <option value="Presencial">Presencial</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Elige EL Cantante del Concierto</label>
+                                <select class="form-select" aria-label="Default select example" name="artista">
+                                    <option selected disabled>--Sleccionar--</option>
+                                    {{#each cantante }}
+                                    <option value="{{id}}">{{nombre}} {{apellidos}}</option>
+                                        
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+						<div class="mt-3">
+							<label class="form-label w-100">Imagen Del Concierto</label>
+							<input type="file" name="image">
+						</div>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Guardar Concierto">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+
+{{!-- Editar artistas --}}
+{{#each conciertos }}
+	
+<div
+	class="modal fade"
+	id="editConcierto{{id}}"
+	tabindex="-1"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true"
+>
+	<div class="modal-dialog">
+		<form action="/admin/editConcierto" method="post" enctype="multipart/form-data" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edtar Concierto:<span class="fw-bold">{{nombre}}</span></h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" name="nombre" class="form-control" value="{{nombre}}">
+                            </div>
+							
+                        </div>
+                        <div class="row mt-3">
+                            <label class="form-label">descripcion del instrumento </label>
+                            <input id="editor{{id}}" type="hidden" name="descripcion" value="{{descripcion}}">
+                            <trix-editor input="editor{{id}}" style="min-height: 300px;"></trix-editor>
+                        
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label>Elige la Modalidad del Concierto</label>
+                                <select class="form-select" aria-label="Default select example" name="modalidad">
+                                    <option value="Presencial">Presencial</option>
+                                    <option value="Virtual" {{#if validacion }}
+                                        selected
+                                    {{/if}}>Virtual</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Elige EL Cantante del Concierto</label>
+                                <input type="text" value="{{cantante}} {{apellidos}}" class="form-control" disabled>
+                            </div>
+                        </div>
+							<img src="/img/{{image}}" alt="" class="my-2" width="200">
+                        <dic class="mt-3">
+							<label class="form-label w-100">Imagen del Concierto</label>
+							<input type="file" name="image">
+							<input type="hidden" name="image_old" value="{{image}}">
+						</dic>
+						<input type="hidden" name="id" value="{{id}}">
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                    >Close</button>
+                    <input type="submit" class="btn btn-primary" value="Editar Concierto">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+{{/each}}

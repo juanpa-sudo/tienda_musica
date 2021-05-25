@@ -1,0 +1,13 @@
+    {{> navbar}}
+<div>
+    <div class="container">
+        <h1 class="text-center fs-1 my-5">Las Mejores Canciones de America Latina</h1>
+        <div class="row">
+            {{#each respuesta }}
+	            {{> canciones}}
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+{{> footer}}

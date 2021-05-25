@@ -1,0 +1,18 @@
+{{> navbar}}
+<div class="" style="background-color: #efefef;">
+	<h1 class="text-center py-5">Instrumentos Musicales
+		<br />
+		<span class="fw-normal fs-5">llevan el ritmo y el sabor que nos hace
+			menear</span>
+	</h1>
+	<div class="container">
+		<div class="row">
+			{{#each respuesta}}
+				{{> instrumentos}}
+			{{/each}}
+
+		</div>
+	</div>
+</div>
+{{> footer}}
+
